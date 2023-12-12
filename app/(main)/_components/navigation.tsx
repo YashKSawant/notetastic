@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronsLeft, MenuIcon, PlusCircle, Search, Settings } from "lucide-react";
+import { ChevronsLeft, MenuIcon, Plus, PlusCircle, Search, Settings } from "lucide-react";
 import { ElementRef, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { usePathname } from "next/navigation";
@@ -11,12 +11,12 @@ import { useMutation, useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { Item } from "./item";
 import { toast } from "sonner";
+import { DocumentList } from "./documentList";
 
 export const Navigation = () => {
 
     const pathName = usePathname();
     const isMobile = useMediaQuery("(max-width:768px)")
-    const documents = useQuery(api.documents.get);
 
     const isResizingRef = useRef(false);
     const sidebarRef = useRef<ElementRef<"aside">>(null);
@@ -140,11 +140,12 @@ export const Navigation = () => {
                     />
                 </div>
                 <div className="mt-4">
-                    {documents?.map((document) => (
-                        <p key={document._id}>
-                            {document.title}
-                        </p>
-                    ))}
+                    <DocumentList />
+                    <Item
+                        onClick={onCreate}
+                        icon={Plus}
+                        label="Add a page"
+                    />
                 </div>
                 <div
                     onMouseDown={handleMouseDown}
