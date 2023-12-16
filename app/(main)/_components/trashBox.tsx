@@ -97,7 +97,7 @@ export const TrashBox = () => {
                                     <div
                                         onClick={(e) => onRestore(e, document._id)}
                                         role="button"
-                                        className="rounded-sm p-2 hover:bg-neutral-200">
+                                        className="rounded-sm p-2 hover:bg-neutral-200 hover:dark:bg-neutral-600">
                                         <ArchiveRestore className="h-4 w-4 text-muted-foreground" />
                                     </div>
                                 </HoverCardTrigger>
@@ -110,7 +110,7 @@ export const TrashBox = () => {
                                     <ConfirmModal onConfirm={() => onRemove(document._id)}>
                                         <div
                                             role="button"
-                                            className="rounded-sm p-2 hover:bg-neutral-200">
+                                            className="rounded-sm p-2 hover:bg-neutral-200 hover:dark:bg-neutral-600">
                                             <Trash className="h-4 w-4 text-muted-foreground" />
                                         </div>
                                     </ConfirmModal>

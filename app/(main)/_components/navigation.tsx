@@ -14,11 +14,16 @@ import { toast } from "sonner";
 import { DocumentList } from "./documentList";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { TrashBox } from "./trashBox";
+import { useSearch } from "@/hooks/useSearch";
+import { useSettings } from "@/hooks/useSettings";
 
 export const Navigation = () => {
 
     const pathName = usePathname();
     const isMobile = useMediaQuery("(max-width:768px)")
+
+    const search = useSearch();
+    const settings = useSettings();
 
     const isResizingRef = useRef(false);
     const sidebarRef = useRef<ElementRef<"aside">>(null);
@@ -128,12 +133,12 @@ export const Navigation = () => {
                         label="Search"
                         icon={Search}
                         isSearch
-                        onClick={() => { }}
+                        onClick={search.onOpen}
                     />
                     <Item
                         label="Settings"
                         icon={Settings}
-                        onClick={() => { }}
+                        onClick={settings.onOpen}
                     />
                     <Item
                         onClick={onCreate}

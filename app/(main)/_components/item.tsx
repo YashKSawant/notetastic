@@ -136,7 +136,7 @@ export const Item = ({
                 <kbd className="ml-auto mr-1pointer-events-none inline-flex h-5 
                 select-none items-center gap-1 rounded border bg-muted px-1.5 
                 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
-                    <span className="text-xs">ctrl+K</span>
+                    <span className="text-xs">ctrl+/</span>
                 </kbd>
             )}
             {!!id && (
@@ -191,7 +191,7 @@ Item.Skeleton = function ItemSkeleton({ level }: { level?: number }) {
             className="flex gap-x-2 py-[3px]"
         >
             <Skeleton className="h-4 w-4" />
-            <Skeleton className="h-4 w-[30%]" />
+            <Skeleton className="h-4 w-[50%]" />
         </div>
     )
 }
