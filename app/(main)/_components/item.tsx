@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useUser } from "@clerk/clerk-react";
 import { archive } from "@/convex/documents";
+import { Emoji, EmojiStyle } from "emoji-picker-react";
 
 interface ItemProps {
     id?: Id<"documents">,
@@ -121,7 +122,7 @@ export const Item = ({
             )}
             {documentIcon ?
                 (<div className="text-[18px] shrink-0 mr-2 text-muted-foreground">
-                    {documentIcon}
+                    <Emoji unified={documentIcon} emojiStyle={EmojiStyle.APPLE} size={20} />
                 </div>)
                 :
                 (<Icon
