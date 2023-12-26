@@ -129,7 +129,7 @@ export const ToolBar = ({ data, preview }: ToolBarProps) => {
                     onBlur={disableInput}
                     onKeyDown={onKeyDown}
                     value={value}
-                    // autoFocus
+                    autoFocus
                     onChange={(e) => onInput(e.target.value)}
                     className="text-5xl bg-transparent font-bold break-words outline-none
                      text-[#3F3F3F] dark:text-[#CFCFCF] resize-none"

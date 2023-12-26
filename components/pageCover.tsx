@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ImageIcon, X } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface PageCoverProps {
     url?: string
@@ -47,6 +48,7 @@ export const PageCover = ({ url, preview, title }: PageCoverProps) => {
                 <Image
                     src={url}
                     fill
+                    priority
                     alt={`${title}'s Cover`}
                     className="object-cover"
                 />
@@ -61,7 +63,7 @@ export const PageCover = ({ url, preview, title }: PageCoverProps) => {
                         size={"sm"}
                     >
                         <ImageIcon className="h-4 w-4 mr-2" />
-                        Change Icon
+                        Change Cover
                     </Button>
                     <Button
                         onClick={onRemove}
@@ -75,5 +77,10 @@ export const PageCover = ({ url, preview, title }: PageCoverProps) => {
                 </div>
             )}
         </div>
+    )
+}
+PageCover.Skeleton = function PageCoverSkeleton() {
+    return (
+        <Skeleton className="w-full h-[35vh]" />
     )
 }

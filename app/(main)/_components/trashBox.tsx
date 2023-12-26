@@ -5,7 +5,7 @@ import { Spinner } from "@/components/spinner";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { Input } from "@/components/ui/input";
 import { api } from "@/convex/_generated/api";
-import { Id } from "@/convex/_generated/dataModel";
+import { Doc, Id } from "@/convex/_generated/dataModel";
 import { useQuery, useMutation } from "convex/react";
 import { ArchiveRestore, Search, Trash, Undo } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
@@ -19,6 +19,7 @@ export const TrashBox = () => {
     const documents = useQuery(api.documents.getTrash);
     const restore = useMutation(api.documents.restore);
     const remove = useMutation(api.documents.remove);
+    const removeCoverImage = useMutation(api.documents.removeCoverImage)
 
     const [search, setSearch] = useState("");
 
@@ -44,17 +45,29 @@ export const TrashBox = () => {
         })
     }
 
-    const onRemove = (
-        documentId: Id<"documents">,
+    const onRemove = async (
+        document: Doc<"documents">,
     ) => {
-        const promise = remove({ id: documentId });
-
-        toast.promise(promise, {
-            loading: "Deleting note...",
-            success: "Note deleted!",
-            error: "Failed to delete note"
+        // remove Cover image from store
+        const coverImagePromise = removeCoverImage({
+            id: document._id
         })
-        if (params.documentId === documentId) {
+        toast.promise(coverImagePromise, {
+            loading: "Deleting Cover Image...",
+            success: "Cover Image deleted!",
+            error: "Failed to delete cover image"
+        })
+        setTimeout(() => {
+            const promise = remove({ id: document._id });
+            toast.promise(promise, {
+                loading: "Deleting note...",
+                success: "Note deleted!",
+                error: "Failed to delete note"
+            })
+        }, 0)
+
+
+        if (params.documentId === document._id) {
             router.push("/documents");
         }
     };
@@ -109,7 +122,7 @@ export const TrashBox = () => {
                             </HoverCard>
                             <HoverCard>
                                 <HoverCardTrigger asChild>
-                                    <ConfirmModal onConfirm={() => onRemove(document._id)}>
+                                    <ConfirmModal onConfirm={() => onRemove(document)}>
                                         <div
                                             role="button"
                                             className="rounded-sm p-2 hover:bg-neutral-200 hover:dark:bg-neutral-600">
