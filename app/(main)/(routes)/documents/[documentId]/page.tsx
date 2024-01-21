@@ -1,12 +1,13 @@
 "use client"
 
+import dynamic from "next/dynamic"
+import { useMemo } from "react"
 import { PageCover } from "@/components/pageCover"
 import { ToolBar } from "@/components/toolbar"
 import { api } from "@/convex/_generated/api"
 import { Id } from "@/convex/_generated/dataModel"
 import { useMutation, useQuery } from "convex/react"
 import { Skeleton } from "@/components/ui/skeleton"
-import Editor from "@/components/editor"
 
 
 interface DocumentIdPageProps {
@@ -15,6 +16,8 @@ interface DocumentIdPageProps {
     }
 }
 const DocumentIdPage = ({ params }: DocumentIdPageProps) => {
+
+    const Editor = useMemo(() => dynamic(() => import("@/components/editor"), { ssr: false }), [])
     const document = useQuery(api.documents.getById, {
         documentId: params.documentId
     });
@@ -57,7 +60,6 @@ const DocumentIdPage = ({ params }: DocumentIdPageProps) => {
                 <ToolBar data={document} />
                 <div className="ml-[-54px]">
                     <Editor
-
                         onChange={onChange}
                         initialContent={document.content}
                     />

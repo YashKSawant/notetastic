@@ -20,12 +20,9 @@ import {
 
 import { useSearch } from "@/hooks/useSearch";
 import { api } from "@/convex/_generated/api";
+import { Emoji, EmojiStyle } from "emoji-picker-react";
 
-export const SearchCommand = ({
-    children,
-}: {
-    children: React.ReactNode
-}) => {
+export const SearchCommand = () => {
     const { user } = useUser();
     const router = useRouter();
     const documents = useQuery(api.documents.getSearch);
@@ -79,7 +76,7 @@ export const SearchCommand = ({
                             >
                                 {document?.icon ? (
                                     <p className="mr-2 text-[18px]">
-                                        {document.icon}
+                                        <Emoji unified={document.icon} emojiStyle={EmojiStyle.APPLE} size={20} />
                                     </p>
                                 ) : (
                                     <File className="h-4 w-4 mr-2" />
@@ -90,7 +87,6 @@ export const SearchCommand = ({
                     </CommandGroup>
                 </CommandList>
             </CommandDialog>
-            {children}
         </>
     )
 }

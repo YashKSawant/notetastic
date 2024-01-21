@@ -7,6 +7,8 @@ import { useParams } from "next/navigation";
 import { Title } from "./title";
 import { Banner } from "./banner";
 import { Options } from "./options";
+import { Button } from "@/components/ui/button";
+import Publish from "./publish";
 
 interface NavbarProps {
     isCollapsed: boolean;
@@ -52,6 +54,7 @@ export const Navbar = ({
                     <Title data={document} />
                     {!document.isArchived && (
                         <div className="flex items-center gap-x-2">
+                            <Publish initialData={document} />
                             <Options documentId={document._id} />
                         </div>
                     )}

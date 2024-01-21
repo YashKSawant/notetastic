@@ -17,14 +17,12 @@ interface EditorProps {
   onChange: (value: string) => void;
   initialContent?: string;
   editable?: boolean;
-  className?:string
 };
 
 const Editor = ({
   onChange,
   initialContent,
-  editable,
-  className,
+  editable
 }: EditorProps) => {
   const { resolvedTheme } = useTheme();
   const { edgestore } = useEdgeStore();
