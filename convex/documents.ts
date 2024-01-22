@@ -229,11 +229,16 @@ export const getById = query({
         documentId:v.id("documents")
     },
     handler:async (context, args) =>{
+        
+        const document = await context.db.get(args.documentId);
+
+        if(document?.isPublished){
+            return document;
+        }
+
         const identity = await context.auth.getUserIdentity();
         if(!identity)
             throw new Error("Not authenticated");
-
-        const document = await context.db.get(args.documentId);
 
         if(!document){
             throw new Error("Not found!");

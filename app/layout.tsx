@@ -38,7 +38,7 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange
               storageKey='notetastic-theme'>
-              <Toaster position='top-right' />
+              <Toaster position='bottom-right' />
               <ModalProvider />
               {children}
             </ThemeProvider>
