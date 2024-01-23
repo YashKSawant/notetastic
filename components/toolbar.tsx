@@ -28,6 +28,10 @@ export const ToolBar = ({ data, preview }: ToolBarProps) => {
 
     const coverImage = useCoverImage();
 
+    /**
+     * @description This method enable input on click
+     * @returns 
+     */
     const enableInput = () => {
         if (preview)
             return;
@@ -38,11 +42,17 @@ export const ToolBar = ({ data, preview }: ToolBarProps) => {
             inputRef.current?.setSelectionRange(0, inputRef.current?.value.length)
         }, 0)
     }
-
+    /**
+     * @description This method is used to disable input
+     */
     const disableInput = () => {
         setIsEditing(false)
     }
 
+    /**
+     * @description This method is used to update the input
+     * @param value 
+     */
     const onInput = (value: string) => {
         setValue(value);
         update({
@@ -51,6 +61,10 @@ export const ToolBar = ({ data, preview }: ToolBarProps) => {
         })
     }
 
+    /**
+     * @description This method is used to on key down
+     * @param event 
+     */
     const onKeyDown = (
         event: React.KeyboardEvent<HTMLTextAreaElement>
     ) => {
@@ -60,6 +74,10 @@ export const ToolBar = ({ data, preview }: ToolBarProps) => {
         }
     }
 
+    /**
+     * @description This method is used to update icon selected
+     * @param icon 
+     */
     const onIconSelect = (icon: string) => {
         update({
             id: data._id,
@@ -67,6 +85,9 @@ export const ToolBar = ({ data, preview }: ToolBarProps) => {
         })
     }
 
+    /**
+     * @description This method is used to remove icons
+     */
     const onRemoveIcon = () => {
         removeIcon({
             id: data._id

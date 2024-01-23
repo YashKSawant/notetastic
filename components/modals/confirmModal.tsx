@@ -21,6 +21,10 @@ export const ConfirmModal = ({
     onConfirm
 }: ConfirmModalProps) => {
 
+    /**
+     * @description This method is used to handle confirm modal
+     * @param e 
+     */
     const handleConfirm = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.stopPropagation();
         onConfirm();

@@ -3,6 +3,10 @@ import { v } from "convex/values";
 import { mutation,query} from "./_generated/server"
 import {Doc,Id} from "./_generated/dataModel"
 
+
+/**
+ * @description This method is used to archive the note
+ */
 export const archive = mutation({
     args:{
         id: v.id("documents")
@@ -55,6 +59,9 @@ export const archive = mutation({
 
 })
 
+/** 
+ * @description This method is used to get sidebar with docs
+*/
 export const getSidebar = query({
     args:{
         parentDocument:v.optional(v.id("documents"))
@@ -80,6 +87,9 @@ export const getSidebar = query({
     }
 })
 
+/**
+ * @description This method is used to create note
+ */
 export const create = mutation({
     args:{
         title:v.string(),
@@ -102,6 +112,9 @@ export const create = mutation({
     }
 })
 
+/**
+ * @description This method is used to get archived notes
+ */
 export const getTrash = query({
     handler:async(context) =>{
         const identity = await context.auth.getUserIdentity()
@@ -122,6 +135,9 @@ export const getTrash = query({
     },
 })
 
+/**
+ * @description This method is used to restore archived notes
+ */
 export const restore = mutation({
     args:{
         id: v.id("documents")
@@ -178,6 +194,9 @@ export const restore = mutation({
     },
 });
 
+/**
+ * @description This method is used to remove notes permanently
+ */
 export const remove = mutation({
     args:{
         id:v.id("documents")
@@ -203,6 +222,9 @@ export const remove = mutation({
     }
 })
 
+/**
+ * @description This method is used to get searched notes
+ */
 export const getSearch = query({
     handler:async(context) =>{
         const identity = await context.auth.getUserIdentity()
@@ -224,6 +246,9 @@ export const getSearch = query({
     }
 })
 
+/**
+ * @description This method is used to get notes by ID
+ */
 export const getById = query({
     args:{
         documentId:v.id("documents")
@@ -257,6 +282,9 @@ export const getById = query({
     },
 })
 
+/**
+ * @description This method is used to update note
+ */
 export const update = mutation({
   args: {
     id: v.id("documents"),
@@ -295,6 +323,9 @@ export const update = mutation({
   },
 });
 
+/**
+ * @description This method is used to remove icon
+ */
 export const removeIcon = mutation({
     args:{
         id: v.id("documents")
@@ -326,6 +357,9 @@ export const removeIcon = mutation({
     }
 });
 
+/**
+ * @description This method is used to remove cover image of note
+ */
 export const removeCoverImage = mutation({
     args:{
         id: v.id("documents")

@@ -19,6 +19,11 @@ interface EditorProps {
   editable?: boolean;
 };
 
+/**
+ * @description This method is used to declare Editor
+ * @param EditorProps 
+ * @returns 
+ */
 const Editor = ({
   onChange,
   initialContent,
@@ -35,6 +40,9 @@ const Editor = ({
     return response.url;
   }
 
+  /**
+   * @description This method creates editor block
+   */
   const editor: BlockNoteEditor = useBlockNote({
     editable,
     initialContent:

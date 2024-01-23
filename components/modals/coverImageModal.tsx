@@ -28,6 +28,10 @@ export const CoverImageModal = () => {
     const params = useParams();
     const update = useMutation(api.documents.update);
 
+    /**
+     * @description This method is used to change the cover image
+     * @param file 
+     */
     const onChange = async (file?: File) => {
         if (file) {
             setIsSubmitted(true);
@@ -48,7 +52,9 @@ export const CoverImageModal = () => {
             onClose();
         }
     }
-
+    /**
+     * @description The method is used to close the modal
+     */
     const onClose = () => {
         setFile(undefined);
         setIsSubmitted(false);

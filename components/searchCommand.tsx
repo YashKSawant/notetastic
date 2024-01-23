@@ -47,6 +47,10 @@ export const SearchCommand = () => {
         return () => document.removeEventListener("keydown", down);
     }, [toggle])
 
+    /**
+     * @description This method is used to select document to view
+     * @param id 
+     */
     const onSelect = (id: string) => {
         router.push(`/documents/${id}`);
         onClose();
